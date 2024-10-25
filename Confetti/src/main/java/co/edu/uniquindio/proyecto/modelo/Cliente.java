@@ -14,8 +14,8 @@ import java.util.List;
 @Document("clientes")
 public class Cliente implements Serializable {
     @Id
-    private String codigo;
-    private String nombre;
+    private String codigoCliente;
+    private String nombreCliente;
     private String correo;
     private List<String> telefono;
 

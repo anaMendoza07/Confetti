@@ -13,8 +13,8 @@ import java.io.Serializable;
 public class Producto implements Serializable {
     @Id
     @EqualsAndHashCode.Include
-    private String codigo;
-    private String nombre;
+    private String codigoProducto;
+    private String nombreProducto;
     private TipoProducto tipoProducto;
     private int unidades;
     private float precio;
