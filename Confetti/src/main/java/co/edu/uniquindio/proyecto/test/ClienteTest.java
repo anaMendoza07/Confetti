@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.boot.test.mock.mockito.MockBean;
 @SpringBootTest
 public class ClienteTest {
-    @MockBean
+    @Autowired 
     private ClienteRepo clienteRepo;
 
     @Test
