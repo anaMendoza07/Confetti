@@ -2,12 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/users.routes.js";
-
+import productRoutes from "./routes/products.routes.js";
 dotenv.config();
 
 const app = express();
 app.use(express.json()); // <- importante para leer JSON
-
+app.use("/api/products", productRoutes);
 // Conectar a MongoDB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("✅ Conectado a MongoDB"))
