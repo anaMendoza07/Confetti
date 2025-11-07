@@ -1,33 +1,26 @@
 import express from "express";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
-import cors from "cors";
-import morgan from "morgan";
-import connectDB from "./config/db.js";
+import userRoutes from "./routes/users.routes.js";
 
-// Configurar variables de entorno
 dotenv.config();
 
-// Crear la aplicación
 const app = express();
+app.use(express.json()); // <- importante para leer JSON
 
-//Conexión a la base de datos
-connectDB();
-// Middlewares
-app.use(cors());
-app.use(express.json());
-app.use(morgan("dev"));
+// Conectar a MongoDB
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("✅ Conectado a MongoDB"))
+    .catch(err => console.error("❌ Error al conectar a MongoDB:", err.message));
 
-// Ruta principal de prueba
-app.get("/", (req, res) => {
-    res.send("🚀 Servidor de Confetti-Node funcionando correctamente!");
-});
+console.log("📦 Cargando rutas de usuario...");
+app.use("/api/users", userRoutes);
 
-// Puerto desde .env o por defecto 4000
+// 👉 Aquí se registran las rutas
+app.use("/api/users", userRoutes);
+
 const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`✅ Servidor corriendo en http://localhost:${PORT}`));
 
-// Iniciar servidor
-app.listen(PORT, () => {
-    console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
-});
 
 //f6JPxeRXaqKeDWBp password admin
